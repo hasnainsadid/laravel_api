@@ -1,19 +1,23 @@
 <?php
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Membercontroller;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CategoryController;
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-$variable = [
+$variables = [
+    'products' => ProductController::class,
     'students' => StudentController::class,
-    'products' => ProductController::class
+    'members' => Membercontroller::class,
+    'categories' => CategoryController::class,
 ];
 
-foreach ($variable as $key => $value) {
-    Route::resource($key, $value);
+foreach ($variables as $key => $value) {
+    Route::apiResource($key, $value);
 }
